@@ -18,13 +18,15 @@ jobs:
                 operating_system: [ubuntu-latest, macos-latest] #added 
 
       
-        runs-on: ubuntu-latest
+        runs-on: ${{matrix.operating_system}}
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
 
         - name: Setup NodeJS
           uses: actions/setup-node@v4
+          with:
+          node-version: ${{ matrix.nodejs_version }}
           
 
         - name: Install Dependencies
