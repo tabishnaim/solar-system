@@ -1,7 +1,7 @@
 name:  Solar System Workflow
 on:
  workflow_dispatch:#done
-  push:
+ push:
    branches:
     - 'branch-b'
 jobs:
