@@ -12,13 +12,11 @@ env:
 
 jobs:
     unit-testing:
+    runs-on: ${{matrix.operating_system}}
      strategy:                                  #added 
             matrix:                                #added 
                 nodejs_version: [20,21,22]         #added  
                 operating_system: [ubuntu-latest, macos-latest] #added 
-
-      
-        runs-on: ${{matrix.operating_system}}
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
