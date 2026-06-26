@@ -2,7 +2,7 @@ name:  Solar System Workflow
 on:
  push:
  workflow_dispatch:
-Jobs:
+jobs:
  unit-testing:
  runs-on: ubuntu-latest
  steps:
