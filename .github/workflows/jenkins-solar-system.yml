@@ -1,7 +1,9 @@
 name:  Solar System Workflow
 on:
- push:
  workflow_dispatch:
+  push:
+   branches:
+    - 'branch-b'
 jobs:
  unit-testing:
   runs-on: ubuntu-latest
