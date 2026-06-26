@@ -13,12 +13,11 @@ env:
 
 jobs:
     unit-testing:
-        runs-on: ${{ matrix.operating_system }}    #modified
-        strategy:                                  #added 
-            matrix:                                #added 
-                nodejs_version: [20,21,22]         #added  
-                operating_system: [ubuntu-latest, macos-latest] #added 
-
+        runs-on: ${{ matrix.operating_system }}
+        strategy:
+            matrix:
+                nodejs_version: [20,21,22]
+                operating_system: [ubuntu-latest, macos-latest]
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
@@ -26,10 +25,17 @@ jobs:
         - name: Setup NodeJS
           uses: actions/setup-node@v4
           with:
-            node-version: ${{ matrix.nodejs_version }}  #modified
+            node-version: ${{ matrix.nodejs_version }}
 
         - name: Install Dependencies
           run: npm install --no-audit
 
         - name: Unit Testing
           run: npm test
+        # >>> START: Added new step for Archive
+        - name: Archive Test Result            
+          uses: actions/upload-artifact@v4
+          with:
+            name: Mocha-Test-Result-${{ matrix.nodejs_version }}-${{ matrix.operating_system }}
+            path: test-results.xml                
+       # <<< END: Added new step for Archive
